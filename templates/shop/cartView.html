@@ -1,0 +1,98 @@
+{% extends 'shop/basic.html' %}
+{% block title%} cartView{% endblock %}
+
+
+
+
+{% block body %}
+
+<div class="col my-4">
+        <h2>Review Your Cart Items</h2>
+        <div class="my-4">
+            <ul class="list-group" id="items">
+            </ul>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mt-3">
+                    <li class="breadcrumb-item active" aria-current="page">Your Cart Total Is <b>Rs.<span id="totalPrice"></b>  </span>Click on the name of the product to view</li>
+                </ol>
+            </nav>
+
+        </div>
+    <div class="col-md-4" align="right">
+
+        <button class='btn btn-primary' onclick='clearCart()' id ='clearCart'>Clear Cart</button>
+        <a href = '/shop/checkout'><button class='btn btn-primary'  id ='Checkout'>Check Out</button> </a>
+
+    </div>
+
+
+
+
+
+{% endblock %}
+
+
+
+{%block js%}
+<script>
+
+
+
+
+if (localStorage.getItem('cart') == null) {
+    var cart = {};
+} else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+count = 0;
+for (item in cart){
+count = count + cart[item][0];
+}
+
+document.getElementById('cart').innerHTML = count;
+
+
+
+var sum = 0;
+var amount = 0;
+
+
+var totalPrice = 0;
+if ($.isEmptyObject(cart)) {
+    //if object is empty
+    mystr = `<p>Your cart is empty, please add some items to your cart before checking out!</p>`
+    $('#items').append(mystr);
+} else {
+    for (item in cart) {
+        let name = cart[item][1];
+        let qty = cart[item][0];
+        let itemPrice = cart[item][2];
+        sum = sum + qty;
+        idd = item.split("pr")[1]
+        totalPrice = totalPrice + qty * itemPrice
+        mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href = "/shop/products/${idd}">${name}</a>
+                    <span class="badge badge-primary badge-pill">${qty}</span>
+
+                </li>`
+        $('#items').append(mystr);
+    }
+}
+
+document.getElementById('totalPrice').innerHTML = totalPrice;
+
+
+
+function clearCart() {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    /* for (var item in cart) {
+        document.getElementById('div' + item).innerHTML = '<button id="' + item + '" class="btn btn-primary cart">Add To Cart</button>'
+    } */
+    localStorage.clear();
+    cart = {};
+    //updatePopover(cart);
+    window.location.reload()
+}
+
+</script>
+{% endblock %}

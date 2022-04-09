@@ -1,0 +1,83 @@
+{% extends 'shop/basic.html' %}
+
+{% block title%} About Us{% endblock %}
+{% block body %}
+
+
+
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Rent-Deal</h1>
+
+      <p>We are Startup with a new idea of bringing a new revolution in Renting that one can RENT it for specific period of time and for any purpose shall be Ok
+      Try something new every time to look out of the crowd motivates us to so
+      This is small startup with a huge dream which can only be achieved with your support, we are there at your every step right from selecting a good choice to
+      delivering it to your door step and also picking it back
+      Happy to see you as a part of our awesome idea<br>
+      जय हिन्द</p>
+      <p><a class="btn btn-primary btn-lg" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=paperwithcode@gmail.com&su=SUBJECT&body=BODY&tf=1" role="button">Mail Us »</a></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Location</h2>
+        <p>Arkade Art Complex,<br>
+        Vinay Nagar, Kashimira, Mira Road, Mira Bhayandar, Maharashtra 401107</p>
+        <p><a class="btn btn-secondary" href="https://www.google.co.in/maps/place/Arkade+Art+Complex/@19.280416,72.8817465,17z/data=!3m1!4b1!4m5!3m4!1s0x3be7b0650ebb7adb:0xd8ea4c5391858827!8m2!3d19.280416!4d72.8839352" role="button">Google Map»</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Instagram</h2>
+        <p> instagram pe ek meme page hai ...<br>
+          follow kar lo  </p><br>
+        <p><a class="btn btn-secondary" href="#" role="button">@divine__creator »</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>ADMIN</h2>
+        <p>  Instagram link:
+        </p>
+        <br><br>
+        <p><a class="btn btn-secondary" href="" role="button">Abhinav »</a>
+        <a class="btn btn-secondary" href="" role="button">Hema »</a>
+        <a class="btn btn-secondary" href="#" role="button">Investor »</a></p>
+      </div>
+    </div>
+
+    <hr>
+
+  </div> <!-- /container -->
+
+</main>
+
+
+
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+
+if(localStorage.getItem('cart') == null){
+var cart = {};
+}
+else
+{
+cart = JSON.parse(localStorage.getItem('cart'));
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+}
+count = 0;
+for (item in cart){
+count = count + cart[item][0];
+}
+
+document.getElementById('cart').innerHTML = count;
+  </script>
+{% endblock %}
